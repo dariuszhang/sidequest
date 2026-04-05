@@ -56,7 +56,7 @@ Some nights, SideQuest makes big progress. Some nights, it only has enough token
 
 ```bash
 brew tap dariuszhang/tap
-brew install sidequest
+brew install dariuszhang/tap/sidequest
 ```
 
 ### Option 2: Download prebuilt binary (GitHub Releases)
