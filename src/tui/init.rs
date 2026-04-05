@@ -45,8 +45,7 @@ pub fn run_repo_selector(repos: Vec<ScannedRepo>) -> Result<Option<Vec<PathBuf>>
 
     let result = loop {
         terminal.draw(|frame| {
-            let (block_area, hint_area) =
-                super::wizard_layout(frame.area(), "SideQuest", 1, 1);
+            let (block_area, hint_area) = super::wizard_layout(frame.area(), "SideQuest", 1, 1);
             let block = Block::default()
                 .title(" Select Repositories ")
                 .borders(Borders::ALL)
@@ -235,19 +234,12 @@ impl InitWizard {
         frame.render_widget(key_hints(&hints), hint_area);
     }
 
-    fn draw_welcome(
-        &self,
-        frame: &mut ratatui::Frame<'_>,
-        area: Rect,
-        input: &InitInput,
-    ) {
+    fn draw_welcome(&self, frame: &mut ratatui::Frame<'_>, area: Rect, input: &InitInput) {
         let mut lines = vec![
             Line::from(""),
             Line::from(Span::styled(
                 "Welcome to SideQuest!",
-                Style::default()
-                    .fg(ACCENT)
-                    .add_modifier(Modifier::BOLD),
+                Style::default().fg(ACCENT).add_modifier(Modifier::BOLD),
             )),
             Line::from(""),
             Line::from("Your AI coding agents have subscription tokens that expire if unused."),
@@ -260,20 +252,29 @@ impl InitWizard {
             )),
             Line::from(""),
             Line::from(vec![
-                Span::styled("  Grind  ", Style::default().fg(ACCENT).add_modifier(Modifier::BOLD)),
+                Span::styled(
+                    "  Grind  ",
+                    Style::default().fg(ACCENT).add_modifier(Modifier::BOLD),
+                ),
                 Span::raw("Review, refactor, and improve your existing repositories"),
             ]),
             Line::from(vec![
-                Span::styled("  Quest  ", Style::default().fg(ACCENT).add_modifier(Modifier::BOLD)),
+                Span::styled(
+                    "  Quest  ",
+                    Style::default().fg(ACCENT).add_modifier(Modifier::BOLD),
+                ),
                 Span::raw("Build entirely new side projects from a goal you describe"),
             ]),
             Line::from(""),
-            Line::from(vec![
-                Span::raw("  SideQuest only runs during your sleep window, and always "),
-            ]),
+            Line::from(vec![Span::raw(
+                "  SideQuest only runs during your sleep window, and always ",
+            )]),
             Line::from(vec![
                 Span::raw("  finishes early enough to guarantee you a "),
-                Span::styled("fresh session", Style::default().add_modifier(Modifier::BOLD)),
+                Span::styled(
+                    "fresh session",
+                    Style::default().add_modifier(Modifier::BOLD),
+                ),
                 Span::raw(" in the morning."),
             ]),
             Line::from(""),
@@ -318,8 +319,12 @@ impl InitWizard {
                     Style::default().add_modifier(Modifier::BOLD),
                 )),
                 Line::from(""),
-                Line::from("SideQuest will try the first enabled agent, and continue work with the next"),
-                Line::from("if the first one's budget is exhausted. Disable agents you don't want to use."),
+                Line::from(
+                    "SideQuest will try the first enabled agent, and continue work with the next",
+                ),
+                Line::from(
+                    "if the first one's budget is exhausted. Disable agents you don't want to use.",
+                ),
             ]),
             chunks[0],
         );
@@ -343,11 +348,7 @@ impl InitWizard {
                     format!(" {rank_num}.")
                 };
                 let checkbox = if enabled { "[*]" } else { "[ ]" };
-                let style = if enabled {
-                    Style::default()
-                } else {
-                    DIM
-                };
+                let style = if enabled { Style::default() } else { DIM };
                 ListItem::new(Line::from(vec![
                     Span::raw(format!(" {checkbox} ")),
                     Span::styled(format!("{rank} {p}"), style),
@@ -532,11 +533,12 @@ impl InitWizard {
         let start_display = self.sleep_start.display_with_placeholder();
         let end_display = self.sleep_end.display_with_placeholder();
 
-        let cursor_start = if self.sleep_focus == SleepFocus::Start && !self.sleep_start.is_complete() {
-            "_"
-        } else {
-            ""
-        };
+        let cursor_start =
+            if self.sleep_focus == SleepFocus::Start && !self.sleep_start.is_complete() {
+                "_"
+            } else {
+                ""
+            };
         let cursor_end = if self.sleep_focus == SleepFocus::End && !self.sleep_end.is_complete() {
             "_"
         } else {
@@ -575,9 +577,7 @@ impl InitWizard {
             Line::from(""),
             Line::from(Span::styled(
                 "You're all set! Your overnight adventure begins tonight.",
-                Style::default()
-                    .fg(ACCENT)
-                    .add_modifier(Modifier::BOLD),
+                Style::default().fg(ACCENT).add_modifier(Modifier::BOLD),
             )),
             Line::from(""),
             Line::from("While you sleep, your AI agents will be hard at work on your code."),
@@ -864,7 +864,8 @@ impl InitWizard {
                     let start = self.sleep_start.to_hhmm();
                     let end = self.sleep_end.to_hhmm();
                     if !is_valid_time(&start) || !is_valid_time(&end) {
-                        self.sleep_error = Some("Enter 4 digits for each time (e.g. 2300 for 11 PM)".to_string());
+                        self.sleep_error =
+                            Some("Enter 4 digits for each time (e.g. 2300 for 11 PM)".to_string());
                         return Action::Continue;
                     }
                     self.sleep_error = None;

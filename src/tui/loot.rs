@@ -242,12 +242,7 @@ impl LootState {
         );
     }
 
-    fn draw_grind_review(
-        &self,
-        frame: &mut ratatui::Frame<'_>,
-        area: Rect,
-        input: &LootInput,
-    ) {
+    fn draw_grind_review(&self, frame: &mut ratatui::Frame<'_>, area: Rect, input: &LootInput) {
         let Some(&pos) = self.grind_indices.get(self.current_grind) else {
             return;
         };
@@ -258,10 +253,7 @@ impl LootState {
         let mut lines = vec![
             Line::from(""),
             Line::from(vec![
-                Span::styled(
-                    format!("[{current}/{total}] "),
-                    Style::default().fg(ACCENT),
-                ),
+                Span::styled(format!("[{current}/{total}] "), Style::default().fg(ACCENT)),
                 Span::styled(
                     format!("{} — ", entry.repo_name),
                     Style::default().add_modifier(Modifier::BOLD),
@@ -289,12 +281,7 @@ impl LootState {
         );
     }
 
-    fn draw_quest_review(
-        &self,
-        frame: &mut ratatui::Frame<'_>,
-        area: Rect,
-        input: &LootInput,
-    ) {
+    fn draw_quest_review(&self, frame: &mut ratatui::Frame<'_>, area: Rect, input: &LootInput) {
         let Some(group) = self.quest_groups.get(self.current_quest_group) else {
             return;
         };
@@ -342,7 +329,11 @@ impl LootState {
             Screen::Summary => {
                 let has_grind = !self.grind_indices.is_empty();
                 if has_grind {
-                    vec![("a", "accept all grind"), ("r", "review each"), ("q", "quit")]
+                    vec![
+                        ("a", "accept all grind"),
+                        ("r", "review each"),
+                        ("q", "quit"),
+                    ]
                 } else {
                     vec![("r", "review each"), ("q", "quit")]
                 }

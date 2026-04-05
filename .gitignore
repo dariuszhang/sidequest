@@ -12,5 +12,6 @@
 *.md
 !README.md
 !AGENTS.md
+!defaults/prompts/task_template.md
 AGENTS.md
 Dockerfile

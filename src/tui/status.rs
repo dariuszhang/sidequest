@@ -88,10 +88,7 @@ fn draw_status(
     frame.render_widget(quest_panel(config, pending_entries), right_sections[1]);
     frame.render_widget(loot_panel(pending_entries), right_sections[2]);
 
-    frame.render_widget(
-        key_hints(&[("q", "quit"), ("enter", "dismiss")]),
-        outer[1],
-    );
+    frame.render_widget(key_hints(&[("q", "quit"), ("enter", "dismiss")]), outer[1]);
 }
 
 fn daemon_panel(snapshot: Option<&RuntimeSnapshot>) -> Paragraph<'static> {
@@ -114,16 +111,17 @@ fn daemon_panel(snapshot: Option<&RuntimeSnapshot>) -> Paragraph<'static> {
 
             lines.push(Line::from(vec![
                 Span::styled("  Status   ", DIM),
-                Span::styled(status_str, Style::default().fg(status_color).add_modifier(Modifier::BOLD)),
+                Span::styled(
+                    status_str,
+                    Style::default()
+                        .fg(status_color)
+                        .add_modifier(Modifier::BOLD),
+                ),
             ]));
 
             let heartbeat = snap
                 .daemon_heartbeat_at
-                .map(|at| {
-                    at.with_timezone(&Local)
-                        .format("%H:%M")
-                        .to_string()
-                })
+                .map(|at| at.with_timezone(&Local).format("%H:%M").to_string())
                 .unwrap_or_else(|| "—".to_string());
             lines.push(Line::from(vec![
                 Span::styled("  Pulse    ", DIM),
@@ -183,7 +181,10 @@ fn budget_panel(snapshot: Option<&RuntimeSnapshot>) -> Paragraph<'static> {
             let reset = relative_reset_time(budget.session_resets_at.with_timezone(&Local));
             let bar = usage_bar(pct, 20);
             lines.push(Line::from(vec![
-                Span::styled(format!("  {provider:<8}"), Style::default().add_modifier(Modifier::BOLD)),
+                Span::styled(
+                    format!("  {provider:<8}"),
+                    Style::default().add_modifier(Modifier::BOLD),
+                ),
                 Span::raw(format!("{bar} {pct}%")),
             ]));
             lines.push(Line::from(vec![
@@ -218,8 +219,14 @@ fn grind_panel(config: &SideQuestConfig, pending: &[HarvestEntry]) -> Paragraph<
     let mut lines = Vec::new();
 
     if config.grind.is_empty() {
-        lines.push(Line::from(Span::styled("  No grind repos configured.", DIM)));
-        lines.push(Line::from(Span::styled("  Run `sidequest grind <path>` to add one.", DIM)));
+        lines.push(Line::from(Span::styled(
+            "  No grind repos configured.",
+            DIM,
+        )));
+        lines.push(Line::from(Span::styled(
+            "  Run `sidequest grind <path>` to add one.",
+            DIM,
+        )));
     } else {
         let mut by_repo: BTreeMap<String, usize> = BTreeMap::new();
         for entry in pending
@@ -265,7 +272,10 @@ fn quest_panel(config: &SideQuestConfig, pending: &[HarvestEntry]) -> Paragraph<
 
     if config.quests.is_empty() {
         lines.push(Line::from(Span::styled("  No quests configured.", DIM)));
-        lines.push(Line::from(Span::styled("  Run `sidequest quest` to start one.", DIM)));
+        lines.push(Line::from(Span::styled(
+            "  Run `sidequest quest` to start one.",
+            DIM,
+        )));
     } else {
         let mut pending_quests: BTreeMap<String, usize> = BTreeMap::new();
         for entry in pending
@@ -283,9 +293,13 @@ fn quest_panel(config: &SideQuestConfig, pending: &[HarvestEntry]) -> Paragraph<
             let status = format!("{:?}", quest.status).to_lowercase();
             let pending_count = pending_quests.get(&quest.name).copied().unwrap_or(0);
             let icon = match quest.status {
-                crate::config::QuestStatus::Active => Span::styled("  ▶ ", Style::default().fg(ACCENT)),
+                crate::config::QuestStatus::Active => {
+                    Span::styled("  ▶ ", Style::default().fg(ACCENT))
+                }
                 crate::config::QuestStatus::Paused => Span::styled("  ⏸ ", DIM),
-                crate::config::QuestStatus::Completed => Span::styled("  ✓ ", Style::default().fg(ratatui::style::Color::Green)),
+                crate::config::QuestStatus::Completed => {
+                    Span::styled("  ✓ ", Style::default().fg(ratatui::style::Color::Green))
+                }
             };
             let mut spans = vec![
                 icon,
@@ -333,10 +347,7 @@ fn loot_panel(pending_entries: &[HarvestEntry]) -> Paragraph<'static> {
                     if pending.len() == 1 { "" } else { "s" }
                 )),
             ]),
-            Line::from(Span::styled(
-                "  Run `sidequest loot` to collect.",
-                DIM,
-            )),
+            Line::from(Span::styled("  Run `sidequest loot` to collect.", DIM)),
         ]
     };
 

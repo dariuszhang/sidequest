@@ -1,4 +1,4 @@
-use anyhow::{anyhow, Result};
+use anyhow::{Result, anyhow};
 use chrono::{DateTime, Duration, Local, LocalResult, NaiveDate, TimeZone};
 
 use crate::config::SideQuestConfig;
