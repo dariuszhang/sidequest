@@ -1,0 +1,16 @@
+# Build artifacts
+/target/
+
+# Local agent/worktree artifacts
+/.claude/
+
+# Exclude internal docs/scripts from public clean-slate release
+/docs/
+/scripts/
+
+# Ignore markdown notes by default, keep core contributor-facing docs
+*.md
+!README.md
+!AGENTS.md
+AGENTS.md
+Dockerfile

@@ -1,0 +1,9 @@
+- Start from recent commits, diffs, and nearby tests to identify review opportunities:
+  bugs, regressions, missing test coverage, and small polish that improves recent work.
+- Also scan the broader codebase for structural improvements: dead code, missing error
+  handling, absent tests for critical paths, packaging or CI gaps, or small refactors.
+- Prioritize by impact. A real bug fix trumps a stylistic cleanup. A missing test for a
+  critical code path trumps a missing README section.
+- Pick the single highest-value change and execute it fully.
+- One focused improvement per run. Keep the diff small and reviewable.
+- Ignore speculative rewrites unless the slice is clearly bounded and will finish safely.

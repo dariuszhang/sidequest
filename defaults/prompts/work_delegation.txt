@@ -1,0 +1,7 @@
+1. Inspect the relevant code, tests, and git state before editing.
+2. Choose the smallest high-confidence change that meaningfully advances the primary task.
+3. Implement the change and run the most relevant checks for the code you touched.
+4. If an approach fails and cannot be repaired quickly, revert that partial attempt and try a smaller safer change.
+5. Prefer one finished artifact over multiple half-finished ideas.
+6. Stop early if the deadline or budget looks tight.
+7. Never ask the sleeping developer what to do next; use repository evidence and the task context to decide.

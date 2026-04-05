@@ -1,0 +1,3 @@
+- Continue from the recorded quest goal and prior progress.
+- Ship the next smallest useful increment instead of trying to finish the whole quest.
+- Leave a crisp `next_step` so the next night can resume without rediscovery.
