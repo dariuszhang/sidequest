@@ -52,14 +52,30 @@ Some nights, SideQuest makes big progress. Some nights, it only has enough token
 
 ## Install
 
-```bash
-# Clone and build
-git clone https://github.com/dariuszhang/sidequest.git
-cd sidequest
-cargo build --release
-cargo install --path .
+### Option 1: Homebrew (recommended on macOS)
 
-# Initialize — walks you through provider setup and repo discovery
+```bash
+brew tap dariuszhang/tap
+brew install sidequest
+```
+
+### Option 2: Download prebuilt binary (GitHub Releases)
+
+1. Open the latest release: <https://github.com/dariuszhang/sidequest/releases/latest>
+2. Download the archive for your machine:
+   - Apple Silicon (M1/M2/M3): `aarch64-apple-darwin`
+   - Intel Mac: `x86_64-apple-darwin`
+3. Extract and move `sidequest` into your `PATH` (for example `/usr/local/bin` or `/opt/homebrew/bin`).
+
+### Option 3: Build from source (Cargo)
+
+```bash
+cargo install --git https://github.com/dariuszhang/sidequest.git sidequest
+```
+
+Then run initial setup:
+
+```bash
 sidequest init
 ```
 
