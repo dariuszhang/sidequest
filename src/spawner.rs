@@ -722,9 +722,12 @@ mod tests {
 
     #[test]
     fn builds_supported_codex_command() {
-        let command =
-            build_agent_command(ProviderKind::Codex, Path::new("/tmp/repo"), "hello world")
-                .expect("command");
+        let command = build_agent_command_for_executable(
+            ProviderKind::Codex,
+            Path::new("/tmp/codex"),
+            Path::new("/tmp/repo"),
+            "hello world",
+        );
 
         let args: Vec<_> = command
             .get_args()
