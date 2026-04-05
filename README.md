@@ -8,6 +8,11 @@ SideQuest always leaves you with a fresh 100% session in the morning, enforced b
 
 Wake up. Run `sidequest loot`. Cherry-pick the wins. 
 
+## Note on Claude Subscriptions
+
+*On Apr.04.2026, it was announced that Claude subscriptions will no longer cover usage on third-party tools, and tokens would be charged through extra usage. Due to the ambiguous explanation currently provided by Anthropic, I'm not sure if SideQuest(as a local tools that only wraps the Claude harness) falls under this category.*
+
+***As a result, until further information comes to light, please keep close attention to your token usage or temporarily disable Claude Code inside the config.***
 
 ## How it works
 
